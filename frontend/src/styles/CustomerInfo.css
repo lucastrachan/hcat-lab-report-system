@@ -1,0 +1,42 @@
+.customer-info {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-heading);
+}
+
+.customer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+}
+
+@media (max-width: 500px) {
+  .customer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.customer-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.field-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-light);
+}
+
+.field-value {
+  font-size: 0.95rem;
+  color: var(--color-text);
+}

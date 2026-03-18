@@ -1,0 +1,22 @@
+.customer-report {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.report-error {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.report-error h2 {
+  margin-bottom: 8px;
+}
+
+.report-error p {
+  color: var(--color-text-light);
+}
+
+.report-export {
+  text-align: center;
+  padding: 16px 0 8px;
+}

@@ -1,0 +1,101 @@
+.drinking-water-guide {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 2px solid var(--color-primary);
+}
+
+.guide-title {
+  font-size: 1.4rem;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.guide-intro {
+  color: var(--color-text-light);
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+}
+
+.guide-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.guide-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.guide-item-open {
+  box-shadow: var(--shadow-sm);
+}
+
+.guide-item-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  text-align: left;
+}
+
+.guide-item-header:hover {
+  background: #f8f9fa;
+}
+
+.guide-item-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.guide-param-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
+.guide-param-limit {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
+.guide-chevron {
+  font-size: 0.7rem;
+  color: var(--color-text-light);
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.guide-item-body {
+  padding: 0 18px 18px;
+  border-top: 1px solid var(--color-border);
+}
+
+.guide-section {
+  margin-top: 14px;
+}
+
+.guide-section h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 0 0 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.guide-section p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}

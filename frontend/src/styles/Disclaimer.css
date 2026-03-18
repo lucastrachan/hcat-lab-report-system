@@ -1,0 +1,11 @@
+.disclaimer {
+  margin-bottom: 32px;
+}
+
+.disclaimer-text {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text-light);
+  margin: 0;
+  font-style: italic;
+}
