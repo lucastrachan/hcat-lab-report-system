@@ -212,12 +212,7 @@ export default function SubmitPage() {
           </section>
 
           <section className="form-section">
-            <div className="section-header">
-              <h2>Water Samples</h2>
-              <Button variant="secondary" size="small" onClick={addSample}>
-                + Add Sample
-              </Button>
-            </div>
+            <h2>Water Samples</h2>
 
             {samples.map((sample, index) => (
               <SampleCard
@@ -231,6 +226,10 @@ export default function SubmitPage() {
                 onRemoveCustomParam={removeCustomParam}
               />
             ))}
+
+            <Button variant="secondary" onClick={addSample} className="add-sample-btn">
+              + Add Sample
+            </Button>
           </section>
 
           <section className="form-section">

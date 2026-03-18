@@ -69,6 +69,10 @@
   padding: 24px 0 40px;
 }
 
+.add-sample-btn {
+  margin-top: 4px;
+}
+
 .submit-success {
   text-align: center;
   padding: 80px 20px;
