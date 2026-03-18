@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../../styles/DrinkingWaterGuide.css';
 
-export default function DrinkingWaterGuide({ parameters }) {
+function paramToId(name) {
+  return 'guide-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+}
+
+export default function DrinkingWaterGuide({ parameters, expandedParam }) {
   const [expandedIndex, setExpandedIndex] = useState(null);
 
   const uniqueParams = [];
@@ -12,6 +16,20 @@ export default function DrinkingWaterGuide({ parameters }) {
       uniqueParams.push(param);
     }
   }
+
+  useEffect(() => {
+    if (!expandedParam) return;
+    const idx = uniqueParams.findIndex((p) => p.name === expandedParam);
+    if (idx !== -1) {
+      setExpandedIndex(idx);
+      const el = document.getElementById(paramToId(expandedParam));
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 50);
+      }
+    }
+  }, [expandedParam]);
 
   if (uniqueParams.length === 0) return null;
 
@@ -33,6 +51,7 @@ export default function DrinkingWaterGuide({ parameters }) {
           return (
             <div
               key={param.name}
+              id={paramToId(param.name)}
               className={`guide-item ${isOpen ? 'guide-item-open' : ''}`}
             >
               <button

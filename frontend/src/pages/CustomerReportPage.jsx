@@ -19,6 +19,7 @@ export default function CustomerReportPage() {
   const [report, setReport] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedParam, setSelectedParam] = useState(null);
 
   useEffect(() => {
     async function fetchReport() {
@@ -60,12 +61,16 @@ export default function CustomerReportPage() {
 
   const allParams = report.samples.flatMap((s) => s.parameters);
 
+  function handleParamClick(paramName) {
+    setSelectedParam(paramName);
+  }
+
   return (
     <PageLayout>
       <div className="customer-report" id="report-content">
         <ReportHeader report={report} />
         <CustomerInfo report={report} />
-        <ResultsTable samples={report.samples} />
+        <ResultsTable samples={report.samples} onParamClick={handleParamClick} />
         <ReportNotes notes={report.notes} />
         <Disclaimer />
 
@@ -78,7 +83,7 @@ export default function CustomerReportPage() {
           </Button>
         </div>
 
-        <DrinkingWaterGuide parameters={allParams} />
+        <DrinkingWaterGuide parameters={allParams} expandedParam={selectedParam} />
       </div>
     </PageLayout>
   );

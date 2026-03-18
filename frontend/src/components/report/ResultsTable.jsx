@@ -9,7 +9,7 @@ const STATUS_COLORS = {
   na: '#e5e7eb',
 };
 
-export default function ResultsTable({ samples }) {
+export default function ResultsTable({ samples, onParamClick }) {
   const [activeTab, setActiveTab] = useState(0);
 
   if (!samples || samples.length === 0) return null;
@@ -23,6 +23,10 @@ export default function ResultsTable({ samples }) {
 
   function isOdorType(param) {
     return param.recommendedLimit === 'Odor' || !parseLimit(param.recommendedLimit);
+  }
+
+  function handleRowClick(paramName) {
+    if (onParamClick) onParamClick(paramName);
   }
 
   return (
@@ -59,18 +63,27 @@ export default function ResultsTable({ samples }) {
               const isBacteria = param.recommendedLimit?.includes('Absent');
               const isOdor = isOdorType(param) && !isBacteria;
               const status = getStatus(param.value, param.recommendedLimit);
-              const percent = getBarPercent(param.value, param.recommendedLimit);
+              const barPercent = status === 'out_of_range' ? 100 : getBarPercent(param.value, param.recommendedLimit);
               const barColor = STATUS_COLORS[status];
 
               return (
-                <tr key={param.name}>
+                <tr
+                  key={param.name}
+                  className="rt-row-clickable"
+                  onClick={() => handleRowClick(param.name)}
+                  title={`Learn more about ${param.name}`}
+                >
                   <td className="rt-col-param">{param.name}</td>
                   <td className="rt-col-result">
                     {val === 'N/A' ? (
                       <span className="rt-na">N/A</span>
                     ) : isBacteria ? (
                       <span className={`rt-bacteria rt-status-${status}`}>
-                        <span className="rt-bacteria-dot" />
+                        {status === 'out_of_range' ? (
+                          <span className="rt-danger-icon" title="Out of range">&#9888;</span>
+                        ) : (
+                          <span className="rt-check-icon">&#10003;</span>
+                        )}
                         {val === '+' ? 'Detected' : 'Not Detected'}
                       </span>
                     ) : isOdor ? (
@@ -81,7 +94,7 @@ export default function ResultsTable({ samples }) {
                       <div className="rt-bar-container">
                         <div
                           className="rt-bar-fill"
-                          style={{ width: `${percent}%`, backgroundColor: barColor }}
+                          style={{ width: `${barPercent}%`, backgroundColor: barColor }}
                         />
                         <div className="rt-bar-label">
                           <span className="rt-bar-value">{val} {param.unit}</span>

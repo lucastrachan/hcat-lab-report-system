@@ -71,12 +71,28 @@
   background: #f9fafb;
 }
 
-.results-table tbody tr:hover {
-  background: #eef3f7;
-}
-
 .results-table tbody tr:last-child td {
   border-bottom: none;
+}
+
+.rt-row-clickable {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.rt-row-clickable:hover {
+  background: #e8f0f7 !important;
+}
+
+.rt-row-clickable .rt-col-param {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.15s;
+}
+
+.rt-row-clickable:hover .rt-col-param {
+  text-decoration-color: var(--color-primary-light);
 }
 
 .rt-col-param {
@@ -174,10 +190,15 @@
   font-weight: 600;
 }
 
-.rt-bacteria-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.rt-danger-icon {
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.rt-check-icon {
+  font-size: 0.9rem;
+  line-height: 1;
   flex-shrink: 0;
 }
 
@@ -186,17 +207,9 @@
   color: #1a5276;
 }
 
-.rt-status-in_range .rt-bacteria-dot {
-  background: #2e86c1;
-}
-
 .rt-status-out_of_range {
   background: #fadbd8;
   color: #922b21;
-}
-
-.rt-status-out_of_range .rt-bacteria-dot {
-  background: #e74c3c;
 }
 
 .rt-status-edge {
