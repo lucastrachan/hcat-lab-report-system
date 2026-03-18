@@ -1,0 +1,226 @@
+.dashboard h1 {
+  margin-bottom: 2px;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.dashboard-subtitle {
+  color: var(--color-text-light);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.dashboard-search {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 38px 10px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 2px rgba(46, 134, 193, 0.15);
+}
+
+.search-input::placeholder {
+  color: #b0b5bc;
+}
+
+.search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: var(--color-text-light);
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.search-clear:hover {
+  color: var(--color-text);
+}
+
+.dashboard-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-text-light);
+}
+
+.dashboard-table-wrap {
+  overflow-x: auto;
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.88rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.dashboard-table thead {
+  background: var(--color-primary);
+}
+
+.dashboard-table th {
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.dashboard-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #eef0f2;
+  vertical-align: middle;
+}
+
+.dashboard-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.dashboard-table tbody tr:hover {
+  background: #eef3f7;
+}
+
+.dashboard-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.dash-customer {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.dash-customer-name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.dash-customer-email {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
+.dash-address {
+  max-width: 200px;
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+}
+
+.dash-samples-count {
+  text-align: center;
+  font-weight: 600;
+}
+
+.dash-actions-col {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.dash-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.email-compose {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.email-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.email-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--color-text-light);
+}
+
+.email-to {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  padding: 6px 0;
+  font-weight: 500;
+}
+
+.email-input {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+.email-input:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 2px rgba(46, 134, 193, 0.15);
+}
+
+.email-textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-text);
+  background: var(--color-surface);
+  resize: vertical;
+  min-height: 180px;
+}
+
+.email-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 0 2px rgba(46, 134, 193, 0.15);
+}
+
+.email-note {
+  font-size: 0.78rem;
+  color: #b0b5bc;
+  font-style: italic;
+  margin: 0;
+}

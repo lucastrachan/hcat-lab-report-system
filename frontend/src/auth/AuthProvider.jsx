@@ -11,26 +11,37 @@ export function useAuth() {
 }
 
 /**
- * Placeholder AuthProvider — will be wired to Cognito in Phase 5.
- * For now, provides a simple mock auth state for development.
+ * Auth provider — currently uses mock auth for development.
+ * Will be wired to Cognito when AWS is configured.
  */
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // TODO: Check Cognito session on mount
+    const saved = sessionStorage.getItem('hcat_admin_user');
+    if (saved) {
+      try {
+        setUser(JSON.parse(saved));
+      } catch { /* ignore */ }
+    }
     setLoading(false);
   }, []);
 
-  const signIn = async (/* username, password */) => {
-    // TODO: Cognito signIn
-    setUser({ username: 'admin', email: 'admin@hcat.com' });
+  const signIn = async (username, password) => {
+    // TODO: Replace with Cognito signIn
+    if (!username || !password) {
+      throw new Error('Username and password are required');
+    }
+    const mockUser = { username, email: `${username}@hcat.com` };
+    setUser(mockUser);
+    sessionStorage.setItem('hcat_admin_user', JSON.stringify(mockUser));
   };
 
   const signOut = async () => {
-    // TODO: Cognito signOut
+    // TODO: Replace with Cognito signOut
     setUser(null);
+    sessionStorage.removeItem('hcat_admin_user');
   };
 
   const value = {
