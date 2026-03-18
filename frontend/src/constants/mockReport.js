@@ -47,14 +47,14 @@ function getExampleValue(name, sampleIdx) {
     'Ammonia Nitrogen':        ['0.1',  '0.3'],
     'Coliform Bacteria':       ['',     '+'],
     'E. Coli Bacteria':        ['',     ''],
-    'Total Iron':              ['0.12', '0.28'],
-    'Manganese':               ['0.02', '0.04'],
-    'Total Dissolved Solids':  ['320',  '410'],
+    'Total Iron':              ['0.12', '0.35'],
+    'Manganese':               ['0.02', '0.045'],
+    'Total Dissolved Solids':  ['320',  '460'],
     'Turbidity Raw':           ['1.2',  '3.5'],
     'Turbidity Filtered @ 20': ['0.4',  '0.9'],
     'Total PO4':               ['0.3',  '0.5'],
     'Total NO3':               ['4.2',  '6.8'],
-    'Hydrogen Sulfide':        ['0.01', '0.03'],
+    'Hydrogen Sulfide':        ['–',    '–'],
   };
   return (values[name] || ['', ''])[sampleIdx];
 }

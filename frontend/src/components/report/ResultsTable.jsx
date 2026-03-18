@@ -1,5 +1,13 @@
 import { useState } from 'react';
+import { getStatus, getBarPercent, parseLimit } from '../../utils/parameterStatus';
 import '../../styles/ResultsTable.css';
+
+const STATUS_COLORS = {
+  in_range: '#d6eaf8',
+  edge: '#fdebd0',
+  out_of_range: '#fadbd8',
+  na: '#e5e7eb',
+};
 
 export default function ResultsTable({ samples }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -11,6 +19,10 @@ export default function ResultsTable({ samples }) {
   function formatValue(value) {
     if (!value || value.trim() === '') return 'N/A';
     return value;
+  }
+
+  function isOdorType(param) {
+    return param.recommendedLimit === 'Odor' || !parseLimit(param.recommendedLimit);
   }
 
   return (
@@ -35,26 +47,57 @@ export default function ResultsTable({ samples }) {
         <table className="results-table">
           <thead>
             <tr>
-              <th className="results-param-col">Parameter</th>
-              <th className="results-value-col">Result</th>
-              <th className="results-unit-col">Unit</th>
-              <th className="results-limit-col">Rec. Limit</th>
+              <th className="rt-col-param">Parameter</th>
+              <th className="rt-col-result">Result</th>
+              <th className="rt-col-method">Method</th>
+              <th className="rt-col-mandatory">Regulatory</th>
             </tr>
           </thead>
           <tbody>
             {activeSample.parameters.map((param) => {
               const val = formatValue(param.value);
-              const isPositive = val === '+';
+              const isBacteria = param.recommendedLimit?.includes('Absent');
+              const isOdor = isOdorType(param) && !isBacteria;
+              const status = getStatus(param.value, param.recommendedLimit);
+              const percent = getBarPercent(param.value, param.recommendedLimit);
+              const barColor = STATUS_COLORS[status];
+
               return (
                 <tr key={param.name}>
-                  <td className="results-param-col">{param.name}</td>
-                  <td
-                    className={`results-value-col ${isPositive ? 'value-positive' : ''} ${val === 'N/A' ? 'value-na' : ''}`}
-                  >
-                    {val}
+                  <td className="rt-col-param">{param.name}</td>
+                  <td className="rt-col-result">
+                    {val === 'N/A' ? (
+                      <span className="rt-na">N/A</span>
+                    ) : isBacteria ? (
+                      <span className={`rt-bacteria rt-status-${status}`}>
+                        <span className="rt-bacteria-dot" />
+                        {val === '+' ? 'Detected' : 'Not Detected'}
+                      </span>
+                    ) : isOdor ? (
+                      <span className="rt-odor">
+                        {val !== 'N/A' ? `${val} ${param.unit}` : 'None detected'}
+                      </span>
+                    ) : (
+                      <div className="rt-bar-container">
+                        <div
+                          className="rt-bar-fill"
+                          style={{ width: `${percent}%`, backgroundColor: barColor }}
+                        />
+                        <div className="rt-bar-label">
+                          <span className="rt-bar-value">{val} {param.unit}</span>
+                          <span className="rt-bar-limit">{param.recommendedLimit}</span>
+                        </div>
+                      </div>
+                    )}
                   </td>
-                  <td className="results-unit-col">{param.unit}</td>
-                  <td className="results-limit-col">{param.recommendedLimit}</td>
+                  <td className="rt-col-method">{param.method || '—'}</td>
+                  <td className="rt-col-mandatory">
+                    {param.mandatoryLimit ? (
+                      <span className="rt-mandatory-badge">{param.mandatoryLimit}</span>
+                    ) : (
+                      '—'
+                    )}
+                  </td>
                 </tr>
               );
             })}
